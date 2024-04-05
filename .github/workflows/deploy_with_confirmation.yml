@@ -43,7 +43,7 @@ jobs:
           echo "commit_msg=$(git log -1 --format=%B)" >> "$GITHUB_OUTPUT"
           echo "commit_sha=$(git log -1 --format=%H)" >> "$GITHUB_OUTPUT"
           
-      - name: Slack Notification Failure
+      - name: Slack Notification
         run: |
           echo "${{ steps.deploy-message.outputs.commit_msg }}"
           echo "${{ steps.deploy-message.outputs.commit_sha }}"
