@@ -25,12 +25,18 @@ concurrency:
 
 env:
   AWS_DEFAULT_REGION: eu-west-2
-  GIT_BRANCH: dev
+  GIT_BRANCH: main
 
 jobs:
   confirmation:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.GIT_BRANCH }}
+        if: github.event.inputs.git-ref == ''
+
       - name: Get git message
         id: deploy-message
         run: |
